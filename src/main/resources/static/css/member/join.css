@@ -1,0 +1,145 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+
+/* 1. 전체 컨테이너 및 배경 */
+.join {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 헤더(80px) + 푸터(80px)를 제외한 나머지 높이 딱 맞춤 */
+    height: calc(100vh - 160px);
+    background-color: #f4f7f9;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+/* 2. 회원가입 박스 영역 */
+.join-con {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+    /* 내용이 많아질 경우 박스 내부 스크롤 허용 (전체 스크롤 방지) */
+    max-height: 95%;
+    overflow-y: auto;
+}
+
+/* 3. 타이틀 스타일 */
+.join-con h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: -1px;
+}
+
+/* 4. 입력 폼 리스트 스타일 */
+.join-con ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.join-con ul li {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 5. 라벨 스타일 */
+.join-con label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 6px;
+    text-align: left;
+}
+
+/* 6. 인풋 필드 스타일 */
+.join-con input[type="email"],
+.join-con input[type="password"],
+.join-con input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.join-con input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* 7. 에러 메시지 스타일 */
+.error {
+    font-size: 12px;
+    color: #ff0000;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* 8. 버튼 영역 (마지막 li) */
+/* HTML에서 버튼들을 감싸는 li에 class="li-last-box"를 추가하거나 아래처럼 유지 */
+.join-con ul li:last-child {
+    flex-direction: row; /* 버튼들은 가로로 배치 */
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.join-con input[type="submit"],
+.join-con input[type="reset"],
+.join-con a.li-last {
+    flex: 1;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+    border: none;
+    box-sizing: border-box;
+}
+
+/* 회원가입 버튼 (메인) */
+.join-con input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+}
+.join-con input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* 로그인 & 초기화 버튼 (서브) */
+.join-con a.li-last,
+.join-con input[type="reset"] {
+    background-color: #e9ecef;
+    color: #495057;
+}
+.join-con a.li-last:hover,
+.join-con input[type="reset"]:hover {
+    background-color: #dee2e6;
+}
+
+/* 반응형 */
+@media (max-width: 480px) {
+    .join-con {
+        padding: 25px 20px;
+    }
+    .join-con ul li:last-child {
+        flex-direction: column; /* 모바일에서는 버튼 세로 배치 */
+    }
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <link rel="stylesheet" th:href="@{/css/member/join.css}">
+    <style>
+        .error{
+            font-size: 12px;
+            color:#ff0000;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{/fragments/common/headerr :: headerFragment}"></div>
+<div class="join">
+    <div class="join-con">
+        <h1>회원가입페이지</h1>
+        <form th:action="@{/member/join}" method="POST" th:object="${memberDto}">
+            <ul>
+                <li>
+                    <label for="userEmail">이메일</label>
+                    <input type="email" th:field="*{userEmail}" id="userEmail">
+                </li>
+                <p th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}" class="error"></p>
+                <li>
+                    <label for="userPw">비빌번호</label>
+                    <input type="password" th:field="*{userPw}" id="userPw">
+                </li>
+                <p th:if="${#fields.hasErrors('userPw')}" th:errors="*{userPw}" class="error"></p>
+                <li>
+                    <label for="userName">이름</label>
+                    <input type="text" th:field="*{userName}" id="userName">
+                </li>
+                <p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="error"></p>
+                <li>
+                    <label for="address">주소</label>
+                    <input type="text" th:field="*{address}" id="address">
+                </li>
+                <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error"></p>
+                <li>
+                    <input type="submit" class="li-last" value="회원가입">
+                    <a th:href="@{/member/login}" class="li-last">로그인</a>
+                    <input type="reset" value="초기회"  class="li-last">
+                </li>
+            </ul>
+
+        </form>
+
+    </div>
+</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

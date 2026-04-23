@@ -1,0 +1,131 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+
+/* 1. 전체 컨테이너: 헤더와 푸터 사이 공간 정밀 계산 */
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 화면 전체(100vh) - 헤더(80px) - 푸터(80px) = 160px 제외 */
+    height: calc(100vh - 160px);
+    background-color: #f4f7f9;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+/* 2. 로그인 박스 영역 */
+.login-con {
+    width: 100%;
+    max-width: 450px; /* 로그인 박스는 회원가입보다 약간 슬림하게 */
+    background: #ffffff;
+    padding: 50px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* 3. 타이틀 스타일 */
+.login-con h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 35px;
+    letter-spacing: -1px;
+}
+
+/* 4. 리스트 및 입력 필드 */
+.login-con ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.login-con ul li {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.login-con label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.login-con input[type="email"],
+.login-con input[type="password"] {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.login-con input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* 5. 버튼 레이아웃 (마지막 li) */
+.login-con ul li:last-child {
+    flex-direction: row; /* 가로 배치 */
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+.login-con .li-last {
+    flex: 1;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* 로그인 버튼 (강조) */
+.login-con input[type="submit"].li-last {
+    background-color: #007bff;
+    color: #fff;
+}
+.login-con input[type="submit"].li-last:hover {
+    background-color: #0056b3;
+}
+
+/* 회원가입 & 초기화 버튼 (서브) */
+.login-con a.li-last,
+.login-con input[type="reset"].li-last {
+    background-color: #e9ecef;
+    color: #495057;
+}
+.login-con a.li-last:hover,
+.login-con input[type="reset"].li-last:hover {
+    background-color: #dee2e6;
+}
+
+/* 6. 반응형 대응 */
+@media (max-width: 480px) {
+    .login-con {
+        padding: 30px 20px;
+    }
+    .login-con ul li:last-child {
+        flex-direction: column; /* 모바일은 세로로 */
+    }
+    .login-con .li-last {
+        width: 100%;
+    }
+}

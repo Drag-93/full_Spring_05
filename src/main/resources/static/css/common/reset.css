@@ -1,0 +1,23 @@
+@charset "utf-8";
+*{
+    margin:0;
+    padding:0;
+}
+html,body{
+    width:100%;
+    height: auto;
+}
+a{
+    text-decoration:none;
+    color:#000000;
+}
+ul,li{
+    list-style: none;
+}
+table, th , td{
+    border: 1px solid #000000;
+    border-collapse: collapse;
+}
+* {
+    box-sizing: border-box; /* 패딩이 높이에 영향을 주지 않도록 설정 */
+}

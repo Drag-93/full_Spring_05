@@ -1,0 +1,22 @@
+/* footer.css 수정 */
+.footer {
+    width: 100%;
+    height: 80px; /* 고정 높이 */
+    background-color: #333;
+    color: #fff;
+    box-sizing: border-box;
+    /* padding: 40px 0; <- 이 부분이 80px을 넘게 만듭니다. 제거하거나 아래처럼 수정 */
+    display: flex;
+    align-items: center; /* 내부 콘텐츠 수직 중앙 정렬 */
+    justify-content: center;
+}
+
+.footer-con {
+    /* 내부 여백 때문에 높이가 늘어나지 않도록 조정 */
+    padding: 0 20px;
+}
+
+.footer-con::after {
+    /* 높이가 80px이므로 너무 많은 텍스트는 삐져나올 수 있음 */
+    margin-top: 5px;
+}

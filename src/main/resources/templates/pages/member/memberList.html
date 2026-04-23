@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원목록</title>
+    <link rel="stylesheet" th:href="@{/css/member/memberList.css}">
+</head>
+<body>
+<div th:replace="~{/fragments/common/headerr :: headerFragment}"></div>
+<div class="memberList">
+    <div class="memberList-con">
+        <h1>회원목록페이지</h1>
+
+        <table class="member-table">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>이메일</th>
+                <th>비빌번호</th>
+                <th>이름</th>
+                <th>주소</th>
+                <th>가입일</th>
+                <th>보기</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="member, loop : ${memberList}">
+                <td th:text="${loop.count}">1</td>
+                <td th:text="${member.userEmail}">test@example.com</td>
+                <td th:text="${member.userPw}">비빌번호</td>
+                <td th:text="${member.userName}">홍길동</td>
+                <td th:text="${member.address}">서울시...</td>
+                <td th:text="${#temporals.format(member.createTime, 'yyyy-MM-dd HH:mm')}">2026-04-23</td>
+                <td>
+                    <a th:href="@{/member/detail/{id}(id=${member.id})}" class="btn-detail">상세보기</a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(memberList)}">
+                <td colspan="5" style="text-align: center; padding: 50px;">가입된 회원이 없습니다.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

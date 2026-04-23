@@ -1,0 +1,79 @@
+@import url(../common/reset.css);
+@import url(../common/header.css);
+@import url(../common/footer.css);
+
+/* 1. 배경 및 전체 레이아웃 */
+.index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* 헤더 80px + 푸터 80px를 뺀 나머지 높이 정밀 설정 */
+    min-height: calc(100vh - 160px);
+
+    background-color: #f0f2f5;
+    box-sizing: border-box;
+    padding: 40px 20px;
+}
+
+/* 2. 콘텐츠 컨테이너 */
+.index-con {
+    width: 100%;
+    max-width: 800px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    padding: 60px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    border: 1px solid #e1e4e8;
+
+    /* 애니메이션 추가 */
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* 3. 타이틀 및 포인트 라인 */
+.index-con h1 {
+    font-size: 2.2rem;
+    color: #1a1a1a;
+    font-weight: 800;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.index-con h1::after {
+    content: "";
+    display: block;
+    width: 60%;
+    height: 5px;
+    background: linear-gradient(to right, #007bff, #00d4ff);
+    margin: 15px auto 0;
+    border-radius: 10px;
+}
+
+/* 애니메이션 정의 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 4. 반응형 대응 */
+@media (max-width: 768px) {
+    .index {
+        /* 모바일에서 헤더/푸터 높이가 변한다면 이 수치를 조정하세요 */
+        min-height: calc(100vh - 160px);
+    }
+    .index-con {
+        padding: 40px 20px;
+    }
+    .index-con h1 {
+        font-size: 1.8rem;
+    }
+}

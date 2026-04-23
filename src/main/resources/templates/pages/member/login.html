@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <link rel="stylesheet" th:href="@{/css/member/login.css}">
+</head>
+<body>
+<div th:replace="~{/fragments/common/headerr :: headerFragment}"></div>
+<div class="login">
+    <div class="login-con">
+        <h1>로그인(Security)</h1>
+        <form  th:action="@{/member/login}" method="POST">
+            <ul>
+                <li>
+                    <label for="userEmail">이메일</label>
+                    <input type="email" name="userEmail" id="userEmail">
+                </li>
+                <li>
+                    <label for="userPw">비빌번호</label>
+                    <input type="password" name="userPw" id="userPw">
+                </li>
+                <li>
+                    <input type="submit" class="li-last" value="로그인">
+                    <a th:href="@{/member/join}" class="li-last">회원가입</a>
+                    <input type="reset" value="초기회"  class="li-last">
+                </li>
+            </ul>
+
+        </form>
+
+    </div>
+</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>
