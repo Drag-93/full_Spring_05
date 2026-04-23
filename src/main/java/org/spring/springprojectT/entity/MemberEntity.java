@@ -9,6 +9,7 @@ import org.spring.springprojectT.common.Role;
 import org.spring.springprojectT.dto.MemberDto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -40,6 +41,7 @@ public class MemberEntity  extends BasicTime {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+
     //필수
 //    @CreationTimestamp
 //    @Column(updatable = false)
@@ -48,6 +50,16 @@ public class MemberEntity  extends BasicTime {
 //    @UpdateTimestamp
 //    @Column(insertable = false)
 //    private LocalDateTime updateTime;
+
+    //외래키
+    //MemberEntity    1:N    BoardEntity                                    constraint
+    @OneToMany(mappedBy = "memberEntity",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<BoardEntity> boardEntities;
+
+
+
+
+
 
     //Dto->Entity
     //회원가입
