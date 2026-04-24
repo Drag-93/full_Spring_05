@@ -67,6 +67,7 @@
 
 .btn-list { background: #e9ecef; color: #495057; }
 .btn-edit { background: #007bff; color: #fff; }
+.btn-delete { background: red; color: #fff; }
 
 /* 목록 페이지의 상세보기 버튼 스타일 */
 .btn-detail {

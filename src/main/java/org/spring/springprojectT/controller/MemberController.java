@@ -3,16 +3,15 @@ package org.spring.springprojectT.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.spring.springprojectT.dto.MemberDto;
+import org.spring.springprojectT.entity.MemberEntity;
 import org.spring.springprojectT.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Controller
@@ -51,6 +50,12 @@ public class MemberController {
         return "pages/member/login";
     }
 
+    @PostMapping("/login")
+    public String loginOk(@ModelAttribute MemberDto memberDto){
+        MemberDto member =memberService.memberLogin(memberDto);
+
+        return "redirect:/member/detail/"+member.getId();
+    }
     // 회원목록
     @GetMapping("/memberList")
     public String memberList(Model model) {
@@ -66,5 +71,35 @@ public class MemberController {
         model.addAttribute("member", memberDto);
         return "pages/member/memberDetail";
     }
+    @GetMapping("/update/{id}")
+    public String memberUpdate(@PathVariable("id") Long id, Model model) {
+        MemberDto memberDto = memberService.memberDetail(id);
+        model.addAttribute("member", memberDto);
+        return "pages/member/update";
+    }
+
+    @PostMapping("/update")
+    public String updateOk(@Valid @ModelAttribute("member") MemberDto memberDto, BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return "pages/member/update";
+        }
+
+        memberService.memberUpdate(memberDto);;
+        return "redirect:/member/detail/"+memberDto.getId();
+    }
+
+    @GetMapping("/delete/{id}")
+    public String memberDelete(@PathVariable("id") Long id, Model model){
+        MemberDto memberDto=memberService.memberDetail(id);
+        model.addAttribute("member",memberDto);
+        return "pages/member/delete";
+    }
+    @PostMapping("/delete")
+    public String deleteOk(@ModelAttribute MemberDto memberDto){
+        memberService.memberDelete(memberDto);
+        return "redirect:/member/memberList";
+    }
+
 
 }

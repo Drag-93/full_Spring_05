@@ -6,7 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/member/memberDetail.css}">
 </head>
 <body>
-<div th:replace="~{/fragments/common/headerr :: headerFragment}"></div>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
 <div class="detail">
     <div class="detail-con">
         <h1>회원 상세 정보</h1>
@@ -28,6 +28,10 @@
                 <span class="content" th:text="${member.address}"></span>
             </li>
             <li>
+                <span class="label">권한</span>
+                <span class="content" th:text="${member.role}"></span>
+            </li>
+            <li>
                 <span class="label">가입일</span>
                 <span class="content" th:text="${#temporals.format(member.createTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
             </li>
@@ -35,6 +39,9 @@
         <div class="btn-group">
             <a th:href="@{/member/memberList}" class="btn-list">목록으로</a>
             <a th:href="@{/member/update/{id}(id=${member.id})}" class="btn-edit">수정하기</a>
+            <div th:if="${member.role.toString() == 'ADMIN'}">
+            <a th:href="@{/member/delete/{id}(id=${member.id})}" class="btn-delete">삭제하기</a>
+            </div>
         </div>
     </div>
 </div>

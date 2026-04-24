@@ -26,15 +26,15 @@ public class MemberDto {
     private String userEmail;
 
     @NotBlank(message = "비빌번호를 입력해주세요")
-    @Size(min = 3)
+    @Size(min = 2)
     private String userPw;
 
     @NotBlank(message = "이름를 입력해주세요")
-    @Size(min = 3,max = 20)
+    @Size(min = 2,max = 20)
     private String userName;
 
     @NotBlank(message = "주소를 입력해주세요")
-    @Size(min = 3)
+    @Size(min = 2)
     private String address;
 
     private Role role;

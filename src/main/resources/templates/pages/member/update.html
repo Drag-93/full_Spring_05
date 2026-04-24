@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원수정</title>
+    <link rel="stylesheet" th:href="@{/css/member/update.css}">
+</head>
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+    <div class="update">
+        <div class="update-con">
+            <form th:action="@{/member/update}" method="post" th:object="${member}">
+                <input type="hidden" name="id" th:value="${member.id}">
+                <ul>
+                    <li>
+                        <label for="userEmail">이메일</label>
+                        <input type="text" name="userEmail" id="userEmail" th:value="${member.userEmail}" >
+                    </li>
+                    <p th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}" class="error"></p>
+                    <li>
+                        <label for="userPw">비밀번호</label>
+                        <input type="password" name="userPw" id="userPw" th:value="${member.userPw}">
+                    </li>
+                    <p th:if="${#fields.hasErrors('userPw')}" th:errors="*{userPw}" class="error"></p>
+                    <li>
+                        <label for="userName">이름</label>
+                        <input type="text" name="userName" id="userName" th:value="${member.userName}">
+                    </li>
+                    <p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="error"></p>
+                    <li>
+                        <label for="address">주소</label>
+                        <input type="text" name="address" id="address" th:value="${member.address}">
+                    </li>
+                    <li>
+                        <label for="role">권한</label>
+                        <input type="text" name="role" id="role" th:value="${member.role}">
+                    </li>
+                    <li th:text="${#temporals.format(member.createTime,'yyyy-MM-dd HH:mm')}"></li>
+                    <li th:text="${#temporals.format(member.updateTime,'yyyy-MM-dd HH:mm')}"></li>
+                    <li>
+                        <input type="submit" value="수정하기">
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

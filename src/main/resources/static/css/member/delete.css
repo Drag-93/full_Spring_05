@@ -1,0 +1,94 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+
+.delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 160px);
+    background-color: #f4f7f9;
+}
+
+.delete-con {
+    width: 100%;
+    max-width: 500px;
+    background: #fff;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.delete-con h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 24px;
+    color: #333;
+}
+
+.delete-con ul {
+    list-style: none;
+    padding: 0;
+    border-top: 2px solid #333;
+}
+
+.delete-con li {
+    display: flex;
+    align-items: center;
+    padding: 18px 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.delete-con label {
+    width: 120px;
+    font-weight: 700;
+    color: #555;
+}
+
+.delete-con input[type="email"],
+.delete-con input[type="password"] {
+    flex: 1;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.delete-con input:focus {
+    outline: none;
+    border-color: #dc3545;
+}
+
+.delete-con li:last-child {
+    gap: 10px;
+    border-bottom: none;
+    padding-top: 30px;
+}
+
+.li-last {
+    flex: 1;
+    height: 45px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+input[type="submit"].li-last {
+    background: #dc3545;
+    color: #fff;
+}
+
+input[type="submit"].li-last:hover {
+    background: #bb2d3b;
+}
+
+input[type="reset"].li-last {
+    background: #e9ecef;
+    color: #495057;
+}
+
+input[type="reset"].li-last:hover {
+    background: #dee2e6;
+}

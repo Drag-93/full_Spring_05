@@ -79,24 +79,51 @@ public class MemberServiceImpl implements MemberService {
             throw  new NoSuchElementException("회원이 존재하지 않습니다.");
         }
 
-//        memberRepository.findById(memberDto.getId())
-//                .orElseThrow(() -> new NoSuchElementException("조회할 아이디가 없습니다"));
+        //이메일 변경시 중복 검사
+        String oldEmail = optionalMemberEntity.get().getUserEmail();
+        String newEmail = memberDto.getUserEmail();
+
+        if(!oldEmail.equals(newEmail)){
+            if(memberRepository.existsByUserEmail(oldEmail)){
+                throw new IllegalStateException("중복된 이메일");
+            }
+        }
 
         memberRepository.save(MemberEntity.toUpdateMemberEntity(memberDto));
 
     }
 
     @Override
-    public void memberDelete(Long id) {
-        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(id);
+    public void memberDelete(MemberDto memberDto) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(memberDto.getId());
         if (!optionalMemberEntity.isPresent()) {
 //            throw new NoSuchElementException("조회할 아이디가 없습니다");
             throw  new NoSuchElementException("회원이 존재하지 않습니다.");
         }
+        if(!memberRepository.existsByUserEmail(memberDto.getUserEmail())){
+            throw new NoSuchElementException("없는 아이디 입니다");
+        }
+        if(!optionalMemberEntity.get().getUserEmail().equals(memberDto.getUserEmail())){
+            throw new IllegalArgumentException("본인만 삭제 가능합니다");
+        }
 
-        //        memberRepository.findById(memberDto.getId())
-//                .orElseThrow(() -> new NoSuchElementException("조회할 아이디가 없습니다"));
+        if(!optionalMemberEntity.get().getUserPw().equals(memberDto.getUserPw())){
+            throw new IllegalArgumentException("비밀번호를 확인해주세요");
+        }
         //회원삭제 deleteById
-        memberRepository.deleteById(id);
+        memberRepository.deleteById(memberDto.getId());
+    }
+
+    @Override
+    public MemberDto memberLogin(MemberDto memberDto) {
+        Optional<MemberEntity> optionalMemberEntity=memberRepository.findByUserEmail(memberDto.getUserEmail());
+        if(!optionalMemberEntity.isPresent()){
+            throw new NoSuchElementException("없는 이메일");
+        }
+        if(!optionalMemberEntity.get().getUserPw().equals(memberDto.getUserPw())){
+            throw  new IllegalArgumentException("아이디 또는 비밀번호를 확인해주세요");
+        }
+
+        return MemberDto.toMemberDto(optionalMemberEntity.get());
     }
 }

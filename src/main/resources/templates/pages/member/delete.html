@@ -2,28 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>로그인</title>
-    <link rel="stylesheet" th:href="@{/css/member/login.css}">
+    <title>회원삭제</title>
+    <link rel="stylesheet" th:href="@{/css/member/delete.css}">
 </head>
 <body>
 <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
-<div class="login">
-    <div class="login-con">
-        <h1>로그인(Security)</h1>
-        <form  th:action="@{/member/login}" method="POST">
+<div class="delete">
+    <div class="delete-con">
+        <h1>회원삭제</h1>
+        <form  th:action="@{/member/delete}" method="POST">
+            <input name="id" id="id" th:value="${member.id}">
             <ul>
                 <li>
                     <label for="userEmail">이메일</label>
                     <input type="email" name="userEmail" id="userEmail">
                 </li>
                 <li>
-                    <label for="userPw">비빌번호</label>
+                    <label for="userPw">비밀번호</label>
                     <input type="password" name="userPw" id="userPw">
                 </li>
                 <li>
-                    <input type="submit" class="li-last" value="로그인">
-                    <a th:href="@{/member/join}" class="li-last">회원가입</a>
-                    <input type="reset" value="초기회"  class="li-last">
+                    <input type="submit" class="li-last" value="삭제하기">
+                    <input type="reset" value="초기화"  class="li-last">
                 </li>
             </ul>
 
