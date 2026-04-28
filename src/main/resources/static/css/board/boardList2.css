@@ -1,0 +1,159 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+/*board/ boardList*/
+.boardList {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: calc(100vh - 160px);
+    background-color: #f4f7f9;
+    box-sizing: border-box;
+    padding: 60px 20px;
+}
+
+.boardList .boardList-con{
+    flex-basis:1400px;
+    min-height: calc(100vh - 160px - 120px );
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:20px;
+    box-sizing:border-box;
+}
+
+.boardList .boardList-con .top{
+
+}
+.boardList .boardList-con .top h1.title{
+    background-color:#000000;
+    color:#ffffff;
+    text-align:center;
+    padding:10px 0;
+    box-sizing:border-box;
+}
+.boardList .boardList-con .top .search{
+    background-color:#ffffff;
+    display:flex;
+    justify-content: flex-end;
+    padding:5px;
+    box-sizing:border-box;
+    gap:3px;
+}
+.boardList .boardList-con .top select{
+    text-align:center;
+}
+
+.boardList .boardList-con .top table{
+    width:100%;
+    table-layout:fixed;
+}
+.boardList .boardList-con .top table th{
+    padding:5px;
+    box-sizing:border-box;
+    background-color:#ffff0055;
+}
+.boardList .boardList-con .top table td{
+    font-size:14px;
+    padding:5px;
+    box-sizing:border-box;
+    text-align:center;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.boardList .boardList-con .top table td.userPw{
+    width:100px;
+    /*text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;*/
+}
+
+
+
+.view{
+    position:relative;
+}
+.view:after{
+    content:'♥';
+    display:block;
+    position:absolute;
+    top:0;
+    right:100%;
+    color:#ff0073;
+    width:20px;
+    height:20px;
+}
+
+
+
+
+
+/*페이징 */
+.boardList .boardList-con .paging{
+    padding:10px 0;
+    box-sizing:border-box;
+    background-color:#ebf9f8;
+    display:flex;
+    justify-content:center;
+}
+.boardList .boardList-con .paging > ul{
+    flex-basis:400px;
+    background-color:#cee76b;
+    display:flex;
+    justify-content:space-between;
+    gap:5px;
+    padding:5px;
+    box-sizing:border-box;
+}
+
+.boardList .boardList-con .paging > ul> li{
+    /* flex:1;*/
+    background-color:#58cc00;
+
+}
+.boardList .boardList-con .paging > ul> li.block{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    gap:5px;
+}
+.boardList .boardList-con .paging > ul> li.block a{
+    color:#ffffff;
+    font-weight:bold;
+    background-color:#000000;
+    padding:0 10px;
+    display:block;
+}
+.boardList .boardList-con .paging > ul> li span{
+    font-size:12px;
+}
+.boardList .boardList-con .paging > ul> li a{
+
+    border-radius:5px;
+    font-size:12px;
+    font-weight:bold;
+}
+.boardList .boardList-con .paging > ul> li span.span0{
+    background-color:#000000;
+    color:#cccccc;
+    padding:2px 10px;
+    border-radius:5px;
+}
+
+.boardList .boardList-con .paging > ul> li span a.span1{
+    padding:2px 10px;
+    background-color:#ff0000;
+    color:#ffffff;
+}
+span.now{
+    color:#ffffff;
+    font-weight:bold;
+    border-radius:10px;
+    background-color:#0000ff;
+    padding:0 10px;
+    position:relative;
+    cursor:pointer;
+}
+

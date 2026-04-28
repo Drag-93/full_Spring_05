@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상세보기</title>
+    <link rel="stylesheet" th:href="@{/css/member/memberList.css}">
+</head>
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="detail">
+        <div class="detail-con">
+            <h1>게시글상세보기</h1>
+            <form th:action="@{/board/update}" method="post">
+                <ul>
+                    <li>
+                        <label for="title">title</label>
+                        <input type="text" id="title" th:field="${board.title}">
+                        <input type="hidden" th:field="${board.id}" id="id" readonly>
+                    </li>
+                    <li>
+                        <label for="content">content</label>
+                        <input type="text" id="content" th:field="${board.content}">
+                    </li>
+                    <li>
+                        <label for="boardPw">boardPw</label>
+                        <input type="text" id="boardPw" th:field="${board.boardPw}">
+                    </li>
+                    <li>
+                        <label for="nickName">nickName</label>
+                        <input type="text" id="nickName" th:field="${board.nickName}">
+                    </li>
+                    <li>
+                        <label for="hit">조회수</label>
+                        <input type="text" id="hit" th:field="${board.hit}">
+                    </li>
+                    <li>
+                        <label for="memberId">memberId</label>
+                        <input type="text" id="memberId"  name="memberId" th:value="${board.memberEntity.id}" readonly>
+                    </li>
+                    <li>
+                        <span >작성일</span>
+                        <span  th:text="${#temporals.format(board.createTime, 'yyyy-MM-dd HH:mm')}"> </span>
+                    </li>
+                    <li>
+                        <span >최종수정일</span>
+                        <span th:text="${#temporals.format(board.updateTime, 'yyyy-MM-dd HH:mm')}"></span>
+
+                    </li>
+                    <li>
+                        <input type="submit" class="li-last" value="수정">
+                        <a th:href="@{/board/boardList}" class="li-last">목록</a>
+                        <a th:href="@{/board/delete/{id}(id=${board.id})}" class="li-last">삭제</a>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

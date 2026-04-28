@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글목록</title>
+    <link rel="stylesheet" th:href="@{/css/member/memberList.css}">
+</head>
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+
+<div class="container">
+    <div class="boardlList">
+        <div class="boardList-con">
+            <h1>게시글목록</h1>
+            <div class="search">
+                <form th:action="@{/board/boardList}" method="get">
+                    <input type="text" name="search" id="search">
+                    <input type="submit" value="검색">
+                </form>
+            </div>
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>title</th>
+                    <th>content</th>
+                    <th>boardPw</th>
+                    <th>nickName</th>
+                    <th>hit</th>
+                    <th>memberId</th>
+                    <th>createTime</th>
+                    <th>updateTime</th>
+                    <th>보기</th>
+                </tr>
+                    <tr th:each="board:${boardList}">
+                        <td th:text="${board.getId()}"></td>
+                        <td th:text="${board.getTitle()}"></td>
+                        <td th:text="${board.getContent()}"></td>
+                        <td th:text="${board.getBoardPw()}"></td>
+                        <td th:text="${board.getNickName()}"></td>
+                        <td th:text="${board.getHit()}"></td>
+<!--                        <td th:text="${board.getMemberId()}"></td>-->
+                        <td th:text="${board.memberEntity.id}"></td>
+                        <td th:text="${#temporals.format(board.createTime, 'yyyy-MM-dd HH:mm')}"></td>
+                        <td th:text="${#temporals.format(board.updateTime, 'yyyy-MM-dd HH:mm')}"></td>
+                        <td class="th-last">
+                            <a th:href="@{/board/detail/{id}(id=${board.id})}">
+                                <span th:text="${board.title}"></span>
+                            </a>
+                        </td>
+                    </tr>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

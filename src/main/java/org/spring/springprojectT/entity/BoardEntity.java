@@ -11,7 +11,7 @@ import org.spring.springprojectT.dto.BoardDto;
 @AllArgsConstructor
 @Builder
 @Entity
-@ToString
+//@ToString
 @Table(name="board_tb4")
 public class BoardEntity extends BasicTime {
     @Id
@@ -42,8 +42,30 @@ public class BoardEntity extends BasicTime {
     private MemberEntity memberEntity;
 
 
+//DTO -> Entity
+    //게시글작성
+    public static BoardEntity toInsertBoardEntity(BoardDto boardDto){
+        BoardEntity boardEntity=new BoardEntity();
+        boardEntity.setTitle(boardDto.getTitle());
+        boardEntity.setContent(boardDto.getContent());
+        boardEntity.setBoardPw(boardDto.getBoardPw());
+        boardEntity.setNickName(boardDto.getNickName());
+        boardEntity.setHit(0);
+        boardEntity.setMemberEntity(boardDto.getMemberEntity());
+        return boardEntity;
+    }
 
+    //게시글수정
+    public static BoardEntity toUpdateBoardEntity(BoardDto boardDto){
+        BoardEntity boardEntity=new BoardEntity();
+        boardEntity.setId(boardDto.getId());
+        boardEntity.setTitle(boardDto.getTitle());
+        boardEntity.setContent(boardDto.getContent());
+        boardEntity.setBoardPw(boardDto.getBoardPw());
+        boardEntity.setNickName(boardDto.getNickName());
+        boardEntity.setHit(boardDto.getHit());
+        boardEntity.setMemberEntity(boardDto.getMemberEntity());
 
-
-
+        return boardEntity;
+    }
 }

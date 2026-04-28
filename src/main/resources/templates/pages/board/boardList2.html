@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글목록</title>
+    <link rel="stylesheet" th:href="@{/css/board/boardList2.css}">
+</head>
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+
+<div class="container">
+    <div class="boardList">
+        <div class="boardList-con">
+            <h1>게시글목록</h1>
+            <div class="search">
+                <form th:action="@{/board/boardList}" method="get">
+                    <input type="text" name="search" id="search">
+                    <input type="submit" value="검색">
+                </form>
+            </div>
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>title</th>
+                    <th>content</th>
+                    <th>boardPw</th>
+                    <th>nickName</th>
+                    <th>hit</th>
+                    <th>memberId</th>
+                    <th>createTime</th>
+                    <th>updateTime</th>
+                    <th>보기</th>
+                </tr>
+                    <tr th:each="board:${boardList}">
+                        <td th:text="${board.getId()}"></td>
+                        <td th:text="${board.getTitle()}"></td>
+                        <td th:text="${board.getContent()}"></td>
+                        <td th:text="${board.getBoardPw()}"></td>
+                        <td th:text="${board.getNickName()}"></td>
+                        <td th:text="${board.getHit()}"></td>
+<!--                        <td th:text="${board.getMemberId()}"></td>-->
+                        <td th:text="${board.memberEntity.id}"></td>
+                        <td th:text="${#temporals.format(board.createTime, 'yyyy-MM-dd HH:mm')}"></td>
+                        <td th:text="${#temporals.format(board.updateTime, 'yyyy-MM-dd HH:mm')}"></td>
+                        <td class="th-last">
+                            <a th:href="@{/board/detail/{id}(id=${board.id})}">
+                                <span th:text="${board.title}"></span>
+                            </a>
+                        </td>
+                    </tr>
+
+            </table>
+<div class="paging">
+    <ul>
+<!-- 처음-->
+        <li>
+            <span th:if="${newPage==0}" class="span0">START</span>
+            <span th:unless="${newPage==0}">
+                <a th:href="@{/board/boardList2(page=0)}" class="span1">처음</a>
+            </span>
+        </li>
+<!--        이전-->
+        <li>
+            <span th:if="${newPage==0}" class="span0">PRE</span>
+            <span th:unless="${newPage==0}">
+                <a th:href="@{/board/boardList2(page=${newPage - 1})}" class="span1">이전</a>
+            </span>
+        </li>
+<!--        페이지 번호-->
+        <li th:each="i:${#numbers.sequence(startPage,endPage)}" class="block">
+            <span th:if="${i==newPage + 1}"
+            th:text="${i}" class="now"></span>
+            <a  th:unless="${i==newPage + 1}"
+                th:href="@{/board/boardList2(page=${i - 1})}"
+            th:text="${i}"></a>
+        </li>
+<!--        다음-->
+        <li>
+            <span th:if="${newPage + 1 == boardList.totalPages}" class="span0">NEXT</span>
+            <span th:unless="${newPage + 1 == boardList.totalPages}">
+                <a th:href="@{/board/boardList2(page=${newPage + 1})}" class="span1">다음</a>
+            </span>
+        </li>
+<!--        마지막-->
+        <li>
+            <span th:if="${newPage + 1 == boardList.totalPages}" class="span0">END</span>
+            <span th:unless="${newPage + 1 == boardList.totalPages}">
+                <a th:href="@{/board/boardList2(page=${boardList.totalPages - 1})}" class="span1">마지막</a>
+            </span>
+        </li>
+    </ul>
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

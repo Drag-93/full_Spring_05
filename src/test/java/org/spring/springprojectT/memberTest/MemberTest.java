@@ -21,11 +21,11 @@ public class MemberTest {
     //1회원가입 -> 5
     @Test
     void insert(){
-        for(int i=0;i<5;i++){
+        for(int i=1;i<=5;i++){
             MemberDto memberDto=new MemberDto();
             memberDto.setUserEmail("m"+i+"@m.com");
-            memberDto.setUserPw("111");
-            memberDto.setUserName("m1"+i);
+            memberDto.setUserPw("11");
+            memberDto.setUserName("m"+i);
             memberDto.setAddress("서울시");
             memberDto.setRole(Role.MEMBER);
 

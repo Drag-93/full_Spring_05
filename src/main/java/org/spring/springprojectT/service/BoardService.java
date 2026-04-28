@@ -1,6 +1,8 @@
 package org.spring.springprojectT.service;
 
 import org.spring.springprojectT.dto.BoardDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -22,4 +24,8 @@ public interface BoardService {
 
     //조회수 증가
     void updateHit(Long id);
-}
+
+    //페이징
+    Page<BoardDto> pagingListAll(Pageable pageable);
+
+    }

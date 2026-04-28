@@ -38,10 +38,10 @@ public class GlobalExceptionHandler {
         return buildResponse("서버 처리 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> handleAll(Exception e){
-        return buildResponse("알 수 없는 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<?> handleAll(Exception e){
+//        return buildResponse("알 수 없는 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 
 
 
