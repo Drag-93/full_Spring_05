@@ -21,6 +21,25 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
 
+    //게시글 작성
+    @GetMapping("/write")
+    public String write(BoardDto boardDto){
+        return "pages/board/boardWrite";
+    }
+
+    @PostMapping("/write")
+    public String writeOk(@Valid BoardDto boardDto,
+                          BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "pages/board/boardWrite";
+        }
+        // 파일이 있고,없고
+        boardService.boardInsert(boardDto);;
+
+        return "redirect:/board/boardList";
+    }
+
+
 
     @GetMapping({"","/boardList"})
     public String boardList(Model model){
@@ -32,6 +51,9 @@ public class BoardController {
 
     @GetMapping("/detail/{id}")
     public String boardDetail(@PathVariable("id") Long id,Model model){
+        //조회수
+        boardService.updateHit(id);
+
         BoardDto boardDto=boardService.boardDetail(id);
         model.addAttribute("board",boardDto);
         return "pages/board/detail";
@@ -50,14 +72,16 @@ public class BoardController {
         return "redirect:/board/boardList";
     }
 
+    //페이징
     @GetMapping("/boardList2")
     public String boardList2(@PageableDefault(page=0,size = 5,sort = "id", direction = Sort.Direction.DESC)Pageable pageable, Model model){
         Page<BoardDto> boardList=boardService.pagingListAll(pageable);
         long count = boardList.getTotalElements();
         int newPage=boardList.getNumber();
         int totalPages=boardList.getTotalPages();
-        int blockNum=3;
+        int blockNum=5;
 
+        //int 이기 때문에 1.xxx -> 1 반환
         int startPage=(newPage/blockNum)*blockNum+1;
         int endPage=Math.min(startPage + blockNum -1,totalPages);
 
@@ -65,13 +89,31 @@ public class BoardController {
         model.addAttribute("endPage",endPage);
         model.addAttribute("boardList",boardList);
         model.addAttribute("newPage",newPage);
-
         return "pages/board/boardList2";
     }
+    //페이징 + 검색
+    @GetMapping("/boardList3")
+    public String boardList3(@PageableDefault(page=0,size = 5,sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+                             @RequestParam(name="subject", required = false) String subject,
+                             @RequestParam(name="search", required = false) String search,
+                             Model model){
+        Page<BoardDto> boardList=boardService.pagingSearchListAll(pageable, subject, search);
+        long count = boardList.getTotalElements();
+        int newPage=boardList.getNumber();
+        int totalPages=boardList.getTotalPages();
+        int blockNum=5;
 
+        //int 이기 때문에 1.xxx -> 1 반환
+        int startPage=(newPage/blockNum)*blockNum+1;
+        int endPage=Math.min(startPage + blockNum -1,totalPages);
 
-
-
+                
+        model.addAttribute("startPage",startPage);
+        model.addAttribute("endPage",endPage);
+        model.addAttribute("boardList",boardList);
+        model.addAttribute("newPage",newPage);
+        return "pages/board/boardList3";
+    }
 
 
 }

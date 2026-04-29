@@ -5,6 +5,8 @@ import lombok.*;
 import org.spring.springprojectT.common.BasicTime;
 import org.spring.springprojectT.dto.BoardDto;
 
+import java.util.List;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -40,6 +42,10 @@ public class BoardEntity extends BasicTime {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id")
     private MemberEntity memberEntity;
+
+
+    @OneToMany(mappedBy = "boardEntity",cascade = CascadeType.REMOVE)
+    private List<ReplyEntity> replyEntityList;
 
 
 //DTO -> Entity

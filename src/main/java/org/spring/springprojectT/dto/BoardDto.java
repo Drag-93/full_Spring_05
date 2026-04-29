@@ -48,6 +48,7 @@ public class BoardDto {
         boardDto.setNickName(boardEntity.getNickName());
         boardDto.setHit(boardEntity.getHit());
         boardDto.setMemberEntity(boardEntity.getMemberEntity());
+        boardDto.setMemberId(boardEntity.getMemberEntity().getId());
         boardDto.setCreateTime(boardEntity.getCreateTime());
         boardDto.setUpdateTime(boardEntity.getUpdateTime());
 

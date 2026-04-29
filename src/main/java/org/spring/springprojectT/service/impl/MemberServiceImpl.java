@@ -5,8 +5,11 @@ import org.spring.springprojectT.dto.MemberDto;
 import org.spring.springprojectT.entity.MemberEntity;
 import org.spring.springprojectT.repository.MemberRepository;
 import org.spring.springprojectT.service.MemberService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Member;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -125,5 +128,27 @@ public class MemberServiceImpl implements MemberService {
         }
 
         return MemberDto.toMemberDto(optionalMemberEntity.get());
+    }
+
+    @Override
+    public Page<MemberDto> pagingSearchListAll(Pageable pageable, String subject, String search) {
+        Page<MemberEntity> memberEntities=null;
+
+        if(subject==null||search==null){
+            memberEntities=memberRepository.findAll(pageable);
+        }else{
+            if (subject.equals("userEmail")){
+                memberEntities=memberRepository.findByUserEmailContaining(pageable, search);
+            }else if(subject.equals("userName")){
+                memberEntities=memberRepository.findByUserNameContaining(pageable,search);
+            }else if(subject.equals("address")){
+                memberEntities=memberRepository.findByAddressContaining(pageable,search);
+            }else{
+                memberEntities=memberRepository.findAll(pageable);
+            }
+
+        }
+
+        return memberEntities.map(MemberDto::toMemberDto);
     }
 }

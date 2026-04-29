@@ -57,7 +57,8 @@ public class MemberEntity  extends BasicTime {
     private List<BoardEntity> boardEntities;
 
 
-
+    @OneToMany(mappedBy = "memberEntity", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    private List<ReplyEntity> replyEntityList;
 
 
 

@@ -1,5 +1,6 @@
 package org.spring.springprojectT.service.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.spring.springprojectT.dto.BoardDto;
 import org.spring.springprojectT.entity.BoardEntity;
@@ -81,16 +82,42 @@ public class BoardServiceImpl implements BoardService {
 
 
     //조회수
+    @Transactional
     @Override
     public void updateHit(Long id) {
-//        boardRepository.updateHit(id);
+        //조회수
+        boardRepository.updateHit(id);
     }
 
     @Override
     public Page<BoardDto> pagingListAll(Pageable pageable) {
 
         Page<BoardEntity> boardEntities=boardRepository.findAll(pageable);
+
+
+        return boardEntities.map(BoardDto::toBoardDto);
+    }
+
+    @Override
+    public Page<BoardDto> pagingSearchListAll(Pageable pageable, String subject, String search) {
+
+        Page<BoardEntity> boardEntities =null;
+
+        if(subject==null||search==null){
+            boardEntities =boardRepository.findAll(pageable);
+        }else {
+            if (subject.equals("title")) {
+                boardEntities = boardRepository.findByTitleContaining(pageable,search);
+            } else if (subject.equals("content")) {
+                boardEntities = boardRepository.findByContentContaining(pageable,search);
+            } else if (subject.equals("nickName")) {
+                boardEntities = boardRepository.findByNickNameContaining(pageable,search);
+            } else {
+                boardEntities = boardRepository.findAll(pageable);
+            }
+        }
         return boardEntities.map(BoardDto::toBoardDto);
     }
 
 }
+

@@ -21,12 +21,12 @@ public class MemberTest {
     //1회원가입 -> 5
     @Test
     void insert(){
-        for(int i=1;i<=5;i++){
+        for(int i=61;i<=100;i++){
             MemberDto memberDto=new MemberDto();
-            memberDto.setUserEmail("m"+i+"@m.com");
+            memberDto.setUserEmail("test"+i+"@test.com");
             memberDto.setUserPw("11");
-            memberDto.setUserName("m"+i);
-            memberDto.setAddress("서울시");
+            memberDto.setUserName("테스터"+i);
+            memberDto.setAddress("노원구");
             memberDto.setRole(Role.MEMBER);
 
             memberRepository.save(MemberEntity.toInsertMemberEntity(memberDto));

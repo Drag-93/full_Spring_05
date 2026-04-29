@@ -12,8 +12,10 @@
     <div class="boardList">
         <div class="boardList-con">
             <h1>게시글목록</h1>
+<!--            검색-->
             <div class="search">
-                <form th:action="@{/board/boardList}" method="get">
+                <form th:action="@{/board/boardList2}" method="get">
+
                     <input type="text" name="search" id="search">
                     <input type="submit" value="검색">
                 </form>

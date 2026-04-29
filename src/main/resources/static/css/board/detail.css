@@ -1,0 +1,145 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Noto Sans KR', sans-serif;
+    background: #f4f6f8;
+    color: #333;
+}
+
+.container {
+    width: 800px;
+    margin: 50px auto;
+}
+
+.detail-con {
+    background: #fff;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.detail-con h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.detail-con ul {
+    list-style: none;
+}
+
+.detail-con li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.detail-con label,
+.detail-con li > span:first-child {
+    width: 120px;
+    font-weight: 600;
+    color: #444;
+}
+
+.detail-con input[type="text"] {
+    flex: 1;
+    padding: 11px 13px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    outline: none;
+    font-size: 14px;
+}
+
+.detail-con input[type="text"]:focus {
+    border-color: #3f7ee8;
+}
+
+.detail-con input[readonly] {
+    background: #f1f3f5;
+    color: #777;
+}
+
+/* 작성일, 수정일 */
+.detail-con li span:nth-child(2) {
+    flex: 1;
+    padding: 11px 13px;
+    background: #f8f9fa;
+    border-radius: 7px;
+    color: #555;
+}
+
+/* 버튼 영역 */
+.detail-con li:last-child {
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.li-last {
+    min-width: 90px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 7px;
+    background: #3f7ee8;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.li-last:hover {
+    background: #2f65c8;
+}
+
+/* 삭제 버튼만 구분 */
+.detail-con li:last-child a:last-child {
+    background: #e74c3c;
+}
+
+.detail-con li:last-child a:last-child:hover {
+    background: #c0392b;
+}
+
+/* 목록 버튼 */
+.detail-con li:last-child a:nth-child(2) {
+    background: #6c757d;
+}
+
+.detail-con li:last-child a:nth-child(2):hover {
+    background: #555f66;
+}
+
+@media (max-width: 850px) {
+    .container {
+        width: 95%;
+    }
+
+    .detail-con {
+        padding: 25px 18px;
+    }
+
+    .detail-con li {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .detail-con label,
+    .detail-con li > span:first-child {
+        width: 100%;
+        margin-bottom: 7px;
+    }
+
+    .detail-con li:last-child {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

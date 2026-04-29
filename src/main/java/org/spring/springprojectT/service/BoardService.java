@@ -28,4 +28,7 @@ public interface BoardService {
     //페이징
     Page<BoardDto> pagingListAll(Pageable pageable);
 
+    //페이징 + 검색
+    Page<BoardDto> pagingSearchListAll(Pageable pageable, String subject, String search);
+
     }

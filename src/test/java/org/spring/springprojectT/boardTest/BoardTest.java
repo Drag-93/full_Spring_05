@@ -44,15 +44,15 @@ public class BoardTest {
 
     @Test
     void insertBoard() {
-        for (int i = 21; i <= 30; i++) {
+        for (int i = 61; i <= 100; i++) {
             MemberEntity memberEntity = new MemberEntity();
-            memberEntity.setId(3L);
+            memberEntity.setId(101L);
 
             BoardDto boardDto = new BoardDto();
             boardDto.setBoardPw("12");
             boardDto.setContent("내용" + i);
             boardDto.setTitle("제목" + i);
-            boardDto.setNickName("m" + i);
+            boardDto.setNickName("tester");
             boardDto.setMemberEntity(memberEntity);
 
             BoardEntity boardEntity1 = BoardEntity.toInsertBoardEntity(boardDto);
