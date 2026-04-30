@@ -1,6 +1,7 @@
 package org.spring.springprojectT.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.spring.springprojectT.common.BasicTime;
@@ -28,10 +29,12 @@ public class ReplyEntity extends BasicTime {
     private String replyWriter;
 
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private BoardEntity boardEntity;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private MemberEntity memberEntity;

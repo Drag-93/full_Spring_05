@@ -1,5 +1,6 @@
 package org.spring.springprojectT.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.spring.springprojectT.common.BasicTime;
@@ -39,11 +40,13 @@ public class BoardEntity extends BasicTime {
     //외래키
     // BoardEntity    N:1     MemberEntity
     // 'member_id' -> 칼럼명(필드)이 자동으로 생김 -> 'board_tb4' 테이블에 자동으로 생김
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id")
     private MemberEntity memberEntity;
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "boardEntity",cascade = CascadeType.REMOVE)
     private List<ReplyEntity> replyEntityList;
 

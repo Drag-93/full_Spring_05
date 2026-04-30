@@ -36,7 +36,7 @@
                     </li>
                     <li>
                         <label for="memberId">memberId</label>
-                        <input type="text" id="memberId"  name="memberId" th:value="${board.memberEntity.id}" readonly>
+                        <input type="text" name="memberId" th:value="${board.memberEntity.id}" readonly>
                     </li>
                     <li>
                         <span >작성일</span>
@@ -54,7 +54,31 @@
                     </li>
                 </ul>
             </form>
+            <hr>
+            <h3>댓글</h3>
+            <!--댓글 작성-->
+            <div class="reply-write">
+                <ul>
+                    <li>
+                        <!--게시글ID-->
+                        <input type="text" id="boardId" th:value="${board.id}" readonly>
+                    </li>
+                    <li>
+                        <!--회원ID, 로그인 후, 테스트 중-> 직접 작성-->
+                        <input type="text" id="memberId" th:value="${board.memberId}">
+                        <!--작성자-->
+                        <input type="text" id="replyWriter" value="" placeholder="작성자">
+                        <input type="text" id="replyContent" placeholder="댓글을 입력하세요">
+                        <button type="button" onclick="saveReply()">작성</button>
+                    </li>
+                </ul>
+            </div>
+            <!-- 댓글 목록-->
+            <div class="reply-list" id="replyList"></div>
         </div>
+
+        <script th:src="@{/js/reply.js}"></script>
+        <div th:replace="~{fragments/common/footer :: footerFragment}"></div>
     </div>
 </div>
 </body>

@@ -43,10 +43,13 @@ public class ReplyDto {
         replyDto.setId(replyEntity.getId());
         replyDto.setReplyContent(replyEntity.getReplyContent());
         replyDto.setReplyWriter(replyEntity.getReplyWriter());
-        replyDto.setBoardEntity(replyEntity.getBoardEntity());
+
+//        replyDto.setBoardEntity(replyEntity.getBoardEntity());
         replyDto.setBoardId(replyEntity.getBoardEntity().getId());
-        replyDto.setMemberEntity(replyEntity.getMemberEntity());
+
+//        replyDto.setMemberEntity(replyEntity.getMemberEntity());
         replyDto.setMemberId(replyEntity.getMemberEntity().getId());
+
         replyDto.setCreateTime(replyEntity.getCreateTime());
         replyDto.setUpdateTime(replyEntity.getUpdateTime());
 
