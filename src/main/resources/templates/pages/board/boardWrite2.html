@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" th:href="@{/css/board/boardWrite.css}">
+    <style>
+        .error {
+            font-size: 12px;
+            font-weight: bold;
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="write">
+        <div class="write-con">
+            <h1>게시글작성</h1>
+            <form th:action="@{/board/write2}" method="post" th:object="${boardDto}" enctype="multipart/form-data">
+                <ul>
+                    <li>
+                        <label for="title">title</label>
+                        <input type="text" th:field="*{title}" id="title">
+                    </li>
+                    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></p>
+                    <li>
+                        <label for="content">content</label>
+                        <input type="text" th:field="*{content}" id="content">
+                    </li>
+                    <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error"></p>
+                    <li>
+                        <label for="boardPw">boardPw</label>
+                        <input type="text" th:field="*{boardPw}" id="boardPw">
+                    </li>
+                    <p th:if="${#fields.hasErrors('boardPw')}" th:errors="*{boardPw}" class="error"></p>
+                    <li>
+                        <label for="nickName">nickName</label>
+                        <input type="text" th:field="*{nickName}" id="nickName">
+                    </li>
+                    <p th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}" class="error"></p>
+                    <li>
+                        <label for="memberId">memberId</label>
+                        <input type="text" th:field="*{memberId}" id="memberId">
+                    </li>
+                    <p th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}" class="error"></p>
+                    <li>
+                    <li>
+                    <label for="boardFile">FILE</label>
+                    <input type="file" name="boardFile" id="boardFile">
+                    </li>
+                        <input type="submit" class="li-last" value="게시글작성">
+                        <a th:href="@{/board/boardList}" class="li-last">게시글목록</a>
+                        <input type="reset" value="초기화"  class="li-last">
+                    </li>
+                </ul>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+
+</body>
+</html>

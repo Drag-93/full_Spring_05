@@ -70,7 +70,7 @@ function updateReply(id,eTaget){
     const memberId = document.getElementById("memberId").value;
     const replyWriter = document.getElementById("replyWriter").value;
 
-    if(!confirm("수정하시겠습니까>")) return;
+    if(!confirm("수정하시겠습니까?")) return;
 
     if (newContent === null) return; // 취소
     if (newContent.trim() === "") {
